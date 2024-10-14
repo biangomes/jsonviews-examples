@@ -1,11 +1,31 @@
 package com.beanascigom.json_view_examples.model.dto;
 
+import com.beanascigom.json_view_examples.model.Address;
+
 import java.io.Serializable;
 
 public class ClientDTO implements Serializable {
   private Long id;
   private String name;
   private String email;
+  private AddressDTO addressDTO;
+  private String documentNumber;
+
+  public AddressDTO getAddressDTO() {
+    return addressDTO;
+  }
+
+  public void setAddressDTO(AddressDTO addressDTO) {
+    this.addressDTO = addressDTO;
+  }
+
+  public String getDocumentNumber() {
+    return documentNumber;
+  }
+
+  public void setDocumentNumber(String documentNumber) {
+    this.documentNumber = documentNumber;
+  }
 
   public Long getId() {
     return id;

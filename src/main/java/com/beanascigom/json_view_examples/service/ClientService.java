@@ -31,10 +31,10 @@ public class ClientService {
     repository.save(client);
   }
 
-  public void update(Long id) {
-    Optional<Client> client = repository.findById(id);
+  public void update(ClientDTO clientDTO) {
+    Optional<Client> client = repository.findById(clientDTO.getId());
     if (client.isEmpty()) {
-      throw new EntityNotFoundException(String.format("No client with ID %d", id));
+      throw new EntityNotFoundException(String.format("No client with ID %d", client.get().getId()));
     }
     repository.save(client.get());
   }

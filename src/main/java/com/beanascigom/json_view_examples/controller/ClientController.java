@@ -35,4 +35,10 @@ public class ClientController {
     service.create(dto);
     return new ResponseEntity<>(HttpStatus.OK);
   }
+
+  @PutMapping("")
+  public ResponseEntity<Object> update(@RequestBody ClientDTO dto) {
+    service.update(dto);
+    return new ResponseEntity<>(HttpStatus.OK);
+  }
 }
