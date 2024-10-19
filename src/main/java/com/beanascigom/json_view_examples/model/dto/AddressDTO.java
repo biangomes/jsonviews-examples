@@ -1,5 +1,7 @@
 package com.beanascigom.json_view_examples.model.dto;
 
+import jakarta.persistence.Column;
+
 public class AddressDTO {
   private Long id;
 
@@ -9,6 +11,7 @@ public class AddressDTO {
   private Integer number;
   private String neighborhood;
   private String city;
+  @Column(length = 2)
   private String state;
   private String country;
   public String getZipCode() {
@@ -64,6 +67,9 @@ public class AddressDTO {
   }
 
   public void setState(String state) {
+    if (!state.matches("[A-Za-z ]*")) {
+      throw new IllegalArgumentException("Just characters. Example: AC, BA, SP, RJ");
+    }
     this.state = state;
   }
 

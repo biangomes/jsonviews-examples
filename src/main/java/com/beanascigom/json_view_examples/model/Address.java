@@ -1,6 +1,7 @@
 package com.beanascigom.json_view_examples.model;
 
 import jakarta.persistence.*;
+import org.hibernate.annotations.processing.Pattern;
 
 import java.io.Serializable;
 import java.util.List;
@@ -14,6 +15,7 @@ public class Address implements Serializable {
   private String street;
   private Integer number;
   private String neighborhood;
+  @Column(length = 2)
   private String state;
   private String city;
   private String country;
@@ -82,6 +84,9 @@ public class Address implements Serializable {
   }
 
   public void setState(String state) {
+    if (!state.matches("[A-Za-z ]*")) {
+      throw new IllegalArgumentException("Just characters. Example: AC, BA, SP, RJ");
+    }
     this.state = state;
   }
 
