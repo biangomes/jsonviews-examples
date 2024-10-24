@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class ProductService {
@@ -14,7 +15,12 @@ public class ProductService {
   private ProductRepository repository;
 
   public Product getById(Long id) {
-    return repository.findById(id).orElseThrow(() -> new EntityNotFoundException(String.format("No Product with ID %d", id)));
+    Optional<Product> product =  repository.findById(id);
+    if (product.isEmpty()) {
+      throw new IllegalArgumentException(String.format("Product with ID {%d} not found", id));
+    }
+    // ProductDTO productDTO = mapper.serialize(product)
+    return product.get();
   }
 
   public List<Product> getAll() {
