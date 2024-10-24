@@ -9,7 +9,7 @@ public class AddressMapper {
   public AddressMapper() {}
 
   public Address deserialize(AddressDTO dto) {
-    Address address = Address.builder()
+    return Address.builder()
             .zipCode(dto.getZipCode())
             .street(dto.getStreet())
             .number(dto.getNumber())
