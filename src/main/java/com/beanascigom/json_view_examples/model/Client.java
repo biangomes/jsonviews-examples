@@ -19,7 +19,7 @@ public class Client implements Serializable {
   private String name;
   private String email;
   private String documentNumber;
-  @ManyToOne
+  @ManyToOne(cascade = CascadeType.ALL)
   @JoinColumn(name = "address_fk", nullable = false)
   private Address address;
   @CreationTimestamp

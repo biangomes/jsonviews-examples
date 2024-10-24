@@ -21,8 +21,13 @@ public class ClientService {
   private ClientMapper mapper;
   private static Logger logger = LoggerFactory.getLogger(ClientService.class);
 
-  public Client getById(Long id) {
-    return repository.findById(id).orElseThrow(() -> new EntityNotFoundException(String.format("No client with ID %d", id)));
+  public ClientDTO getById(Long id) {
+    Optional<Client> client = repository.findById(id);
+    if (client.isEmpty()) {
+      throw new EntityNotFoundException(String.format("Client with ID {%d} not found", id));
+    }
+    ClientDTO clientDTO = mapper.serialize(client.get());
+    return clientDTO;
   }
 
   public List<Client> getAll() {
@@ -41,5 +46,13 @@ public class ClientService {
       throw new EntityNotFoundException(String.format("No client with ID %d", client.get().getId()));
     }
     repository.save(client.get());
+  }
+
+  public void delete(Long id) {
+    Optional<Client> client = repository.findById(id);
+    if (client.isEmpty()) {
+      throw new EntityNotFoundException(String.format("Client with ID {%d} not found", id));
+    }
+    repository.delete(client.get());
   }
 }

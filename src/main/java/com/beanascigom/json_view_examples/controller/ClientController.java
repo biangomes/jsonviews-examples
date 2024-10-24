@@ -24,7 +24,7 @@ public class ClientController {
   private static Logger logger = LoggerFactory.getLogger(ClientController.class);
 
   @GetMapping("/{id}")
-  public ResponseEntity<Client> getById(@PathVariable("id") Long id) {
+  public ResponseEntity<ClientDTO> getById(@PathVariable("id") Long id) {
     var result = service.getById(id);
     return new ResponseEntity<>(result, HttpStatus.OK);
   }
@@ -43,6 +43,12 @@ public class ClientController {
   @PutMapping("")
   public ResponseEntity<Object> update(@RequestBody ClientDTO dto) {
     service.update(dto);
+    return new ResponseEntity<>(HttpStatus.OK);
+  }
+
+  @DeleteMapping("/{id}")
+  public ResponseEntity<Object> delete(@PathVariable("id") Long id) {
+    service.delete(id);
     return new ResponseEntity<>(HttpStatus.OK);
   }
 }
