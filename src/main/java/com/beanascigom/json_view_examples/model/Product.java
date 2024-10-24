@@ -1,16 +1,14 @@
 package com.beanascigom.json_view_examples.model;
 
 import com.beanascigom.json_view_examples.model.enums.Gender;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Entity
 public class Product implements Serializable {
@@ -22,6 +20,9 @@ public class Product implements Serializable {
   private BigDecimal price;
   private String code;
   private Gender gender;
+  @ManyToMany(fetch = FetchType.LAZY)
+  @JoinTable(name = "order_product", joinColumns = @JoinColumn(name = "order_id"), inverseJoinColumns = @JoinColumn(name = "product_id"))
+  private List<Order> orders;
   @CreationTimestamp
   private LocalDateTime createdAt;
   @UpdateTimestamp

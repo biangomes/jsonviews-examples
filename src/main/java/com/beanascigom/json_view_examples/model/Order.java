@@ -1,19 +1,26 @@
 package com.beanascigom.json_view_examples.model;
 
 import jakarta.persistence.*;
+import lombok.Getter;
+import lombok.Setter;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
 import java.io.Serializable;
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Entity(name = "orders")
+@Getter
+@Setter
 public class Order implements Serializable {
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private Long id;
-
-  private Product product;
+  @ManyToMany(fetch = FetchType.LAZY)
+  @JoinTable(name = "order_product", joinColumns = @JoinColumn(name = "product_id"), inverseJoinColumns = @JoinColumn(name = "order_id"))
+  private List<Product> product;
+  @ManyToOne
   private Client client;
   @ManyToOne
   @JoinColumn(name = "delivery_address", nullable = false)
@@ -22,37 +29,5 @@ public class Order implements Serializable {
   private LocalDateTime createdAt;
   @UpdateTimestamp
   private LocalDateTime updatedAt;
-
-  public Product getProduct() {
-    return product;
-  }
-
-  public void setProduct(Product product) {
-    this.product = product;
-  }
-
-  public Client getClient() {
-    return client;
-  }
-
-  public void setClient(Client client) {
-    this.client = client;
-  }
-
-  public Address getDeliveryAddress() {
-    return deliveryAddress;
-  }
-
-  public void setDeliveryAddress(Address deliveryAddress) {
-    this.deliveryAddress = deliveryAddress;
-  }
-
-  public LocalDateTime getCreatedAt() {
-    return createdAt;
-  }
-
-  public LocalDateTime getUpdatedAt() {
-    return updatedAt;
-  }
 
 }
