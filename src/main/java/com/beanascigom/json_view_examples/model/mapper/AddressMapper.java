@@ -9,27 +9,26 @@ public class AddressMapper {
   public AddressMapper() {}
 
   public Address deserialize(AddressDTO dto) {
-    Address address = new Address();
-    address.setZipCode(dto.getZipCode());
-    address.setStreet(dto.getStreet());
-    address.setNumber(dto.getNumber());
-    address.setNeighborhood(dto.getNeighborhood());
-    address.setCity(dto.getCity());
-    address.setState(dto.getState());
-    address.setCountry(dto.getCountry());
-    return address;
+    Address address = Address.builder()
+            .zipCode(dto.getZipCode())
+            .street(dto.getStreet())
+            .number(dto.getNumber())
+            .neighborhood(dto.getNeighborhood())
+            .city(dto.getCity())
+            .state(dto.getState())
+            .country(dto.getCountry())
+            .build();
   }
 
   public AddressDTO serialize(Address address) {
-    AddressDTO dto = new AddressDTO();
-    dto.setId(address.getId());
-    dto.setZipCode(address.getZipCode());
-    dto.setStreet(address.getStreet());
-    dto.setNumber(address.getNumber());
-    dto.setNeighborhood(address.getNeighborhood());
-    dto.setCity(address.getCity());
-    dto.setState(address.getState());
-    dto.setCountry(address.getCountry());
-    return dto;
+    return AddressDTO.builder()
+            .zipCode(address.getZipCode())
+            .street(address.getStreet())
+            .number(address.getNumber())
+            .neighborhood(address.getNeighborhood())
+            .city(address.getCity())
+            .state(address.getState())
+            .country(address.getCountry())
+            .build();
   }
 }

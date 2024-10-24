@@ -1,8 +1,7 @@
 package com.beanascigom.json_view_examples.model;
 
 import jakarta.persistence.*;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
@@ -12,6 +11,9 @@ import java.time.LocalDateTime;
 @Entity
 @Getter
 @Setter
+@Builder
+@AllArgsConstructor
+@NoArgsConstructor
 public class Client implements Serializable {
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)

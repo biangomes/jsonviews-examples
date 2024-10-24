@@ -1,11 +1,13 @@
 package com.beanascigom.json_view_examples.model.dto;
 
 import jakarta.persistence.Column;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 
 @Getter
 @Setter
+@AllArgsConstructor
+@NoArgsConstructor
+@Builder
 public class AddressDTO {
   private Long id;
   private String zipCode;

@@ -13,12 +13,12 @@ public class ClientMapper {
   public ClientMapper() {}
 
   public Client deserialize(ClientDTO dto) {
-    Client client = new Client();
-    client.setName(dto.getName());
-    client.setEmail(dto.getEmail());
-    client.setDocumentNumber(dto.getDocumentNumber());
-    client.setAddress(addressMapper.deserialize(dto.getAddressDTO()));
-    return client;
+    return Client.builder()
+            .name(dto.getName())
+            .email(dto.getEmail())
+            .documentNumber(dto.getDocumentNumber())
+            .address(addressMapper.deserialize(dto.getAddressDTO()))
+            .build();
   }
 
   public ClientDTO serialize(Client client) {
