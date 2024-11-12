@@ -2,6 +2,9 @@ package com.beanascigom.json_view_examples.service;
 
 import com.beanascigom.json_view_examples.model.Client;
 import com.beanascigom.json_view_examples.model.Order;
+import com.beanascigom.json_view_examples.model.Product;
+import com.beanascigom.json_view_examples.model.dto.OrderDTO;
+import com.beanascigom.json_view_examples.model.dto.ProductDTO;
 import com.beanascigom.json_view_examples.repository.ClientRepository;
 import com.beanascigom.json_view_examples.repository.OrderRepository;
 import jakarta.persistence.EntityNotFoundException;
@@ -30,5 +33,12 @@ public class OrderService {
     }
 
     return repository.findOrdersByClientId(clientId);
+  }
+
+  public Order makeAOrder(OrderDTO orderDTO) {
+    for (ProductDTO productDTO : orderDTO.getProductDTO()) {
+      System.out.println(productDTO.getPrice());
+    }
+    var order = mapper.s
   }
 }

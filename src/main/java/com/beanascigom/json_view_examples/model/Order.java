@@ -7,7 +7,9 @@ import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
 import java.io.Serializable;
+import java.math.BigDecimal;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity(name = "orders")
@@ -19,9 +21,10 @@ public class Order implements Serializable {
   private Long id;
   @ManyToMany(fetch = FetchType.LAZY)
   @JoinTable(name = "order_product", joinColumns = @JoinColumn(name = "product_id"), inverseJoinColumns = @JoinColumn(name = "order_id"))
-  private List<Product> product;
+  private List<Product> product = new ArrayList<>();
   @ManyToOne
   private Client client;
+  private BigDecimal totalPrice;
   @ManyToOne
   @JoinColumn(name = "delivery_address", nullable = false)
   private Address deliveryAddress;
