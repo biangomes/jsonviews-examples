@@ -17,6 +17,7 @@ public class Address implements Serializable {
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private Long id;
+  @Column(unique = true)
   private String zipCode;
   private String street;
   private Integer number;
@@ -27,8 +28,8 @@ public class Address implements Serializable {
   private String country;
   @OneToMany(mappedBy = "deliveryAddress")
   private List<Order> orders;
-  @OneToMany(mappedBy = "address")
-  private List<Client> clients;
+  @OneToOne
+  private Client client;
 
   public void setState(String state) {
     if (!state.matches("[A-Za-z ]*")) {
@@ -36,5 +37,7 @@ public class Address implements Serializable {
     }
     this.state = state;
   }
+
+
 
 }

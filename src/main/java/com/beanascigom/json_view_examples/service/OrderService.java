@@ -35,10 +35,10 @@ public class OrderService {
     return repository.findOrdersByClientId(clientId);
   }
 
-  public Order makeAOrder(OrderDTO orderDTO) {
-    for (ProductDTO productDTO : orderDTO.getProductDTO()) {
-      System.out.println(productDTO.getPrice());
-    }
-    var order = mapper.s
-  }
+//  public Order makeAOrder(OrderDTO orderDTO) {
+//    for (ProductDTO productDTO : orderDTO.getProductDTO()) {
+//      System.out.println(productDTO.getPrice());
+//    }
+//    var order = mapper.s
+//  }
 }
